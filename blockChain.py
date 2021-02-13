@@ -18,7 +18,7 @@ class Blockchain:
         block = {  # dictionary of python data structure
             'index': len(self.chain)+1,
             'timestamp': str(datetime.datetime.now()),
-            'proof': proof,
+            'proof': proof,#works like a nounce of block stops when we reach at or below the target
             'previous_hash': previous_hash}
         self.chain.append(block)
         return block
@@ -36,7 +36,7 @@ class Blockchain:
                 check_proof = True
             else:
                 new_proof += 1
-        return new_proof
+        return new_proof # it is just a no. corresponding to the game solved by person is having a hash with trailing 4 zeroe's
 
     def hash(self, block):
         encoded_block = json.dumps(block, sort_keys=True).encode()
@@ -53,7 +53,7 @@ class Blockchain:
                 return False
             previous_proof = previous_block['proof']
             proof = block['proof']
-            # verfying the proof of block with the data proof and previous proof
+            # verfying the proof of block with the data proof and previous proof it is easy then creating the proof
             hash_operation = hashlib.sha256(
                 str(proof**2 - previous_proof**2).encode()).hexdigest()
             if hash_operation[:4] != '0000':
