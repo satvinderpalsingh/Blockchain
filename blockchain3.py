@@ -134,7 +134,7 @@ blockchain = Blockchain()
 
 # Mining the blockchain
 # create an random and unique address for the node on port 5000
-# this is the address used by to send the whale coin when the miner mines the whale coin
+# this is the address used by to send the whale coin when the miner mines the wahle coin
 node_address = str(uuid4()).replace('-', '')
 
 # part-2
@@ -148,7 +148,7 @@ def mine_block():
     previous_hash = blockchain.hash(previous_block)
     # miners price
     # usually the reciever public address is created when  user generate the wallet and mining pool send the coin after mining the block to miner address present in the bat file which is edited after downloading the software
-    blockchain.add_transaction(node_address, 'satvinder', 1)
+    blockchain.add_transaction(node_address, 'Navjot', 1)
     # when created blockchain is called all the transactions performed will be inserted inside the current created block and when appended in transactions it will be again change to [] empty to avoid the duplicacy
     block = blockchain.create_block(proof, previous_hash)
     response = {'message': 'Congratulations, you just mined a block! 😈😈😈😈😈🤓🤓🤓',  # response is a json data
@@ -212,10 +212,9 @@ def connect_node():
                 'total_nodes': list(blockchain.nodes)}
     return jsonify(response), 201
 
+
 # Replacing the chain by the longest chain if needed
 # this function will present in every node of blockchain and always checked so that the node remain upadatesd with other blockchains by hitiing replace_chain URL
-
-
 @ app.route('/replace_chain', methods=['GET'])
 def replace_chain():
     # using the above defined function in class
@@ -231,4 +230,4 @@ def replace_chain():
 
 # Running the app
 # host= '0.0.0.0' specifies that it is available publicily
-app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=5003)
